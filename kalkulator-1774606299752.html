@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads Kalkulator for Rørleggere i Norge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #1B4FD8, #3366FF);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .calculator {
+            background: #ffffff;
+            border: 2px solid #1B4FD8;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(27, 79, 216, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1B4FD8;
+            font-size: 1.1em;
+        }
+        
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #1B4FD8;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            transform: scale(1.2);
+        }
+        
+        .calculate-btn {
+            background: #1B4FD8;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+            margin: 20px 0;
+        }
+        
+        .calculate-btn:hover {
+            background: #0F3BB8;
+        }
+        
+        .results {
+            background: #f8f9ff;
+            border: 2px solid #1B4FD8;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+            animation: slideIn 0.5s ease-in-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.2em;
+            color: #1B4FD8;
+        }
+        
+        .result-label {
+            font-weight: 500;
+        }
+        
+        .result-value {
+            font-weight: 600;
+            color: #1B4FD8;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #1B4FD8, #3366FF);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(27, 79, 216, 0.3);
+        }
+        
+        .tips {
+            background: #f0f5ff;
+            border-left: 4px solid #1B4FD8;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+        
+        .tips h3 {
+            color: #1B4FD8;
+            margin-bottom: 15px;
+        }
+        
+        .tips ul {
+            padding-left: 20px;
+        }
+        
+        .tips li {
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .calculator {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 Google Ads Kalkulator</h1>
+            <p>Beregn kostnadene for Google Ads markedsføring for din rørleggerbedrift i Norge</p>
+        </div>
+        
+        <div class="calculator">
+            <div class="form-group">
+                <label for="region">Hvilken region driver du i?</label>
+                <select id="region">
+                    <option value="oslo">Oslo og Akershus</option>
+                    <option value="bergen">Bergen og omegn</option>
+                    <option value="trondheim">Trondheim og omegn</option>
+                    <option value="stavanger">Stavanger og omegn</option>
+                    <option value="kristiansand">Kristiansand og omegn</option>
+                    <option value="andre_byer">Andre større byer</option>
+                    <option value="distrikt">Distriktskommuner</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="budget">Ønsket månedlig budsjett (kr)</label>
+                <input type="number
