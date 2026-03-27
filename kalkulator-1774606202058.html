@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO ROI Kalkulator for Rørleggere i Stavanger</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #1B4FD8, #4169E1);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .calculator-section {
+            background: #f8f9ff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid #e8ecff;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #1B4FD8;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #1B4FD8;
+        }
+
+        .slider-container {
+            margin: 15px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            background: #ddd;
+            outline: none;
+            border-radius: 3px;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #1B4FD8;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #1B4FD8;
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .calculate-btn {
+            background: #1B4FD8;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+
+        .calculate-btn:hover {
+            background: #0f3bb8;
+        }
+
+        .results {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid #1B4FD8;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #1B4FD8;
+        }
+
+        .result-label {
+            font-weight: bold;
+        }
+
+        .result-value {
+            font-size: 1.1em;
+            color: #1B4FD8;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, #1B4FD8, #4169E1);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .cta-btn {
+            background: white;
+            color: #1B4FD8;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .info-text {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #1B4FD8;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .calculator-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 SEO ROI Kalkulator for Rørleggere</h1>
+            <p>Beregn hvor mye du kan tjene på SEO-investering i Stavanger-området</p>
+        </div>
+
+        <div class="calculator-section">
+            <div class="input-group">
+                <label for="monthlyBudget">Månedlig SEO-budsjett (kr):</label>
+                <input type="number" id="monthlyBudget" value="5000" min="1000" max="50000">
+            </div>
+
+            <div class="input-group">
+                <label for="avgJobValue">Gjennomsnittlig oppdragsverdi (kr):</label>
+                <input type="number" id="avgJobValue" value="15000" min="1000" max="100000">
+            </div>
+
+            <div class="input-group">
+                <label for="conversionRate">Konverteringsrate fra henvendelse til oppdrag (%):</label>
+                <div class="slider-container">
+                    <input type="range" id="conversionRate" class="slider" min="5" max="50" value="25">
+                    <div style="text-align: center; margin-top: 5px;">
+                        <span id="conversionRateValue
